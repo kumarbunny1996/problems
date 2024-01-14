@@ -28,3 +28,46 @@ const obj = {
 };
 
 obj.x(); // returns ths obj which is binding in that obj
+
+// this keyword in call, apply and bind (sharing methods)
+
+const student = {
+  name: "sathish",
+  printname: function () {
+    console.log(this.name);
+  },
+};
+
+const student2 = {
+  name: "priya",
+};
+
+student.printname();
+student.printname.call(student2); // this keyword will be student2 object
+
+// this keyword in arrow function dont provide their own this binding but retains this value of the enclosed lexical context which means depends upon where this keyword is used
+
+let obj2 = {
+  a: 10,
+  x: () => {
+    console.log(this);
+  },
+};
+
+obj2.x();
+
+// this keyword in arrow nested function
+// here the function encloses the arrow function so this will be obj3
+let obj3 = {
+  a: 20,
+  x: function () {
+    const y = () => {
+      console.log(this);
+    };
+    y();
+  },
+};
+
+obj3.x();
+
+// this inside the DOM => reference to the HTMLelement
